@@ -20,13 +20,13 @@ struct WeatherManager {
     
     func fetchWeather(cityName: String) {
         var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = "api.openweathermap.org"
-        urlComponents.path = "/data/2.5/weather"
+        urlComponents.scheme = K.htmlScheme
+        urlComponents.host = K.OpenWeather.Host
+        urlComponents.path = K.OpenWeather.Path
         urlComponents.queryItems = [
-            URLQueryItem(name: "appid", value: SK.openWeatherMapAPIKey),
-            URLQueryItem(name: "units", value: "metric"),
-            URLQueryItem(name: "q", value: cityName)
+            URLQueryItem(name: K.OpenWeather.AppID, value: SK.openWeatherMapAPIKey),
+            URLQueryItem(name: K.OpenWeather.UnitsQuery, value: K.OpenWeather.Units),
+            URLQueryItem(name: K.OpenWeather.CityQuery, value: cityName)
         ]
         if let urlString = urlComponents.string {
             performRequest(with: urlString)
@@ -35,14 +35,14 @@ struct WeatherManager {
     
     func fetchWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = "api.openweathermap.org"
-        urlComponents.path = "/data/2.5/weather"
+        urlComponents.scheme = K.htmlScheme
+        urlComponents.host = K.OpenWeather.Host
+        urlComponents.path = K.OpenWeather.Path
         urlComponents.queryItems = [
-            URLQueryItem(name: "appid", value: SK.openWeatherMapAPIKey),
-            URLQueryItem(name: "units", value: "metric"),
-            URLQueryItem(name: "lat", value: String(latitude)),
-            URLQueryItem(name: "lon", value: String(longitude))
+            URLQueryItem(name: K.OpenWeather.AppID, value: SK.openWeatherMapAPIKey),
+            URLQueryItem(name: K.OpenWeather.UnitsQuery, value: K.OpenWeather.Units),
+            URLQueryItem(name: K.OpenWeather.LatQuery, value: String(latitude)),
+            URLQueryItem(name: K.OpenWeather.LonQuery, value: String(longitude))
         ]
         if let urlString = urlComponents.string {
             performRequest(with: urlString)
